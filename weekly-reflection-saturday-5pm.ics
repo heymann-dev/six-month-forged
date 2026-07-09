@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Six Month Forge//Weekly Reflection//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:six-month-forge-weekly-reflection@northstar
+DTSTAMP:20260710T000000Z
+DTSTART;TZID=America/Los_Angeles:20260711T170000
+RRULE:FREQ=WEEKLY;BYDAY=SA
+SUMMARY:Six-Month Forge Weekly Reflection
+DESCRIPTION:Open Six-Month Forge, complete Weekly Review, copy packet, and paste into ChatGPT for recommendations.
+END:VEVENT
+END:VCALENDAR

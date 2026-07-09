@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Six-Month Forge</title>
+  <meta name="description" content="Phone-first night-shift recovery command app for Guard Attention, Rebuild Body, and Move Life." />
+  <meta name="theme-color" content="#07111d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Forge" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <style>
+    :root{
+      --bg:#07111d;--bg2:#0b1a29;--card:#102235;--card2:#142d44;--line:#28465f;
+      --text:#f1f8ff;--muted:#9eb7cc;--soft:#dceefa;--gold:#f4c95d;--blue:#67d8ef;
+      --green:#4bd37b;--yellow:#ffd166;--red:#ff6b6b;--purple:#b695ff;--orange:#ff9f43;
+      --shadow:0 16px 45px rgba(0,0,0,.30);--radius:22px;--safeBottom:env(safe-area-inset-bottom,0px);--safeTop:env(safe-area-inset-top,0px)
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at 20% -5%,rgba(103,216,239,.16),transparent 32%),linear-gradient(145deg,#050b12 0%,#07111d 50%,#0c2034 100%);color:var(--text)}
+    body{padding:0 0 calc(12px + var(--safeBottom))}.app{width:min(760px,100%);margin:0 auto;padding:8px 12px 14px}.page{display:none}.page.active{display:block}
+    .hero{border:1px solid var(--line);border-radius:28px;padding:20px;background:radial-gradient(circle at 90% 0%,rgba(244,201,93,.20),transparent 30%),linear-gradient(135deg,#102235,#07111d 68%);box-shadow:var(--shadow);overflow:hidden}
+    .kicker{color:var(--gold);font-weight:950;letter-spacing:.13em;text-transform:uppercase;font-size:.72rem}.hero h1{font-size:clamp(2rem,9vw,4rem);line-height:.92;margin:.35em 0 .2em;letter-spacing:-.06em}.sub{color:var(--soft);line-height:1.5;font-weight:750}.rule{margin-top:12px;border-left:3px solid var(--gold);padding:10px 13px;background:rgba(255,255,255,.055);border-radius:0 15px 15px 0;font-weight:900}.why{margin-top:12px;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end}.why input{font-weight:850}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:10px 0;box-shadow:0 8px 24px rgba(0,0,0,.14)}.card h2,.card h3{margin:.05em 0 .65em;letter-spacing:-.025em}.card h2{font-size:1.18rem}.card h3{font-size:.86rem;color:var(--soft);text-transform:uppercase;letter-spacing:.05em}@media(max-width:430px){.hero{padding:16px;border-radius:24px}.card{padding:12px;border-radius:19px;margin:9px 0}.hero h1{font-size:clamp(1.85rem,8.5vw,3rem)}}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}@media(max-width:560px){.grid2,.grid3{grid-template-columns:1fr}}
+    .metric{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:18px;padding:12px}.metric .label{color:var(--muted);font-weight:850;font-size:.82rem}.metric .num{font-size:2.05rem;font-weight:950;letter-spacing:-.055em;line-height:1.05}.metric .mini{color:var(--muted);font-weight:750;font-size:.82rem;margin-top:4px}.metric .smallnum{font-size:1.3rem;font-weight:950;color:var(--soft)}
+    .progress{height:12px;background:#06101a;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green));border-radius:999px;transition:width .22s ease}.bar.flat{background:linear-gradient(90deg,#1d7ea0,#4bd37b)}
+    .nav{position:sticky;top:0;z-index:50;width:min(760px,100%);margin:0 auto;padding:calc(4px + var(--safeTop)) 8px 5px;display:flex;gap:4px;background:rgba(5,11,18,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.nav button{flex:1;min-width:0;border:0;border-radius:999px;background:transparent;color:var(--muted);padding:6px 2px;font-weight:950;font-size:.62rem;line-height:1;cursor:pointer;white-space:nowrap}.nav button.active{background:#12324a;color:white}.nav span{display:inline;font-size:.72rem;margin-right:2px}@media(max-width:380px){.nav button{font-size:.58rem}.nav span{display:none}}
+    .pill{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:rgba(255,255,255,.06);border-radius:999px;padding:8px 11px;color:var(--soft);font-weight:950;font-size:.82rem}.pill.green{color:var(--green);border-color:rgba(75,211,123,.50)}.pill.yellow{color:var(--yellow);border-color:rgba(255,209,102,.50)}.pill.red{color:var(--red);border-color:rgba(255,107,107,.50)}
+    .action{width:100%;border:0;border-radius:20px;background:linear-gradient(135deg,#1e88a8,#1d5f88);color:white;padding:16px;font-size:1.04rem;font-weight:950;box-shadow:0 12px 28px rgba(0,0,0,.22);cursor:pointer;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}.action.secondary{background:#142b40;border:1px solid var(--line)}.action.gold{background:linear-gradient(135deg,#d5a322,#8e6412)}.action.danger{background:linear-gradient(135deg,#b72c3b,#6d1e29)}.action.compact{padding:11px;border-radius:15px;font-size:.9rem}
+    .row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.muted{color:var(--muted)}.small{font-size:.86rem}.hard{font-weight:950}.spacer{height:10px}.ok{color:var(--green)}.warn{color:var(--yellow)}.bad{color:var(--red)}
+    .shift{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:rgba(255,255,255,.055);border:1px solid var(--line);border-radius:20px;padding:12px;margin-top:12px}.shift b{font-size:1rem}.shift small{display:block;color:var(--muted);font-weight:800;margin-top:2px}.datepill{font-weight:950;color:var(--gold);white-space:nowrap}
+    .groupTitle{display:flex;align-items:center;justify-content:space-between;margin:16px 0 9px}.groupTitle h2{margin:0;font-size:1.1rem}.groupTitle span{font-size:.82rem;font-weight:950;color:var(--muted)}
+    .check{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;padding:11px;margin:7px 0;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.045);cursor:pointer;user-select:none}.check input{width:26px;height:26px;accent-color:var(--green)}.check strong{display:block}.check small{display:block;color:var(--muted);font-weight:750;margin-top:2px}.check.guard{border-left:4px solid var(--blue)}.check.body{border-left:4px solid var(--green)}.check.life{border-left:4px solid var(--purple)}.check.done{background:rgba(75,211,123,.11);border-color:rgba(75,211,123,.42)}
+    .floor{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:480px){.floor{grid-template-columns:1fr}}.floorItem{padding:10px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.04);display:flex;justify-content:space-between;gap:8px;font-weight:850}.floorItem span{font-weight:950}
+    .protocol{padding:12px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.045);margin:9px 0}.protocol b{color:var(--gold)}
+    .history{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.daybox{aspect-ratio:1;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.045);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:950;color:var(--muted)}.daybox.good{background:rgba(75,211,123,.25);color:white;border-color:rgba(75,211,123,.55)}.daybox.okay{background:rgba(255,209,102,.23);color:white;border-color:rgba(255,209,102,.45)}.daybox.bad{background:rgba(255,107,107,.18);color:white;border-color:rgba(255,107,107,.38)}.daybox.pain0{background:rgba(75,211,123,.18)}.daybox.pain1{background:rgba(255,209,102,.22)}.daybox.pain2{background:rgba(255,159,67,.25)}.daybox.pain3{background:rgba(255,107,107,.26)}
+    table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px;vertical-align:top}th{color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}input,select,textarea{width:100%;background:#07111d;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit}label.formLabel{display:block;color:var(--muted);font-weight:900;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:560px){.formGrid{grid-template-columns:1fr}}
+    textarea{min-height:150px}.notice{padding:12px;border:1px dashed var(--line);border-radius:16px;background:rgba(255,255,255,.04);color:var(--soft);font-weight:750;line-height:1.45}.toast{position:fixed;top:calc(12px + var(--safeTop));left:50%;transform:translateX(-50%);z-index:99;background:#102235;border:1px solid var(--line);color:white;border-radius:999px;padding:10px 14px;box-shadow:var(--shadow);font-weight:950;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1}
+    .saveStatus{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;background:rgba(255,255,255,.05);color:var(--muted);font-weight:900;font-size:.78rem}.saveDot{width:8px;height:8px;border-radius:999px;background:var(--green);box-shadow:0 0 0 3px rgba(75,211,123,.15)}
+    input[type=range]{accent-color:var(--gold);padding:0}.rangeRow{display:grid;grid-template-columns:1fr 58px;gap:10px;align-items:center}.painValue{font-size:1.7rem;font-weight:950;color:var(--gold);text-align:center}.painBlock{border:1px solid var(--line);border-radius:18px;padding:12px;background:rgba(255,255,255,.04);margin:10px 0}.painDetail{border-left:4px solid var(--red);padding:10px;border-radius:0 14px 14px 0;background:rgba(255,107,107,.08);margin-top:10px}.insight{border-left:4px solid var(--gold);padding:11px 12px;border-radius:0 14px 14px 0;background:rgba(244,201,93,.08);margin:9px 0}.hidden{display:none!important}
+  </style>
+</head>
+<body>
+<div class="toast" id="toast">Saved</div>
+<nav class="nav">
+  <button class="active" data-page="home" aria-label="Home"><span>🏠</span>Home</button>
+  <button data-page="today" aria-label="Log today"><span>✅</span>Log</button>
+  <button data-page="progress" aria-label="Progress"><span>📈</span>Progress</button>
+  <button data-page="weekly" aria-label="Weekly review"><span>🧭</span>Weekly</button>
+  <button data-page="backup" aria-label="Backup"><span>🛡️</span>Backup</button>
+</nav>
+<div class="app">
+  <section id="home" class="page active">
+    <div class="hero">
+      <div class="kicker">Six-Month Forge</div>
+      <h1>One log. Real progress.</h1>
+      <div class="sub">Phone-first tracker for night-shift recovery. Log once, then watch your streaks, scores, ankle/knee pain trends, and weekly review update automatically.</div>
+      <div class="rule">Open → Log Today → Progress updates → Backup weekly.</div>
+      <div class="why"><input id="whyLine" aria-label="Why line" placeholder="My reason: get back to sport, work, freedom, and control." /><button class="action compact gold" id="saveWhy">Save why</button></div>
+    </div>
+    <div class="shift"><div><b>Active shift day</b><small id="shiftRule">Loading…</small></div><div id="activeDate" class="datepill">—</div></div>
+    <div class="card"><h2>Start here</h2><div class="grid2"><button class="action gold" data-jump="today">✅ Log Today</button><button class="action secondary" data-jump="progress">📈 View Progress</button></div><div class="spacer"></div><div class="notice">Use this like an app: log the active shift day, then leave. The dashboard recalculates automatically.</div><div class="spacer"></div><div class="saveStatus"><span class="saveDot"></span><span id="saveStatusHome">Ready to save</span></div></div>
+    <div class="card"><h2>Daily reminder</h2><div class="notice"><b>5 PM daily Northstar check-in.</b><br>Calendar is the reliable way to get phone/email reminders. The app saves data locally, but a static home-screen app cannot send email by itself.</div><div class="spacer"></div><a class="action secondary" href="northstar-daily-checkin-5pm.ics" download>Download daily 5 PM calendar reminder</a></div>
+    <div class="card"><div class="grid2"><div class="metric"><div class="label">Mode</div><div id="modePill" class="pill">LOG</div><div id="nextAction" class="mini">Log today.</div></div><div class="metric"><div class="label">Today score</div><div id="todayScore" class="num">0%</div><div class="progress"><div id="todayBar" class="bar"></div></div></div></div></div>
+    <div class="card"><h2>Recovery Timeline</h2><div class="grid2"><div class="metric"><div class="label">Right ankle/foot post-op</div><div id="daysPostOp" class="num">—</div><div class="mini">days since 5/14/2026 surgery</div></div><div class="metric"><div class="label">Screw removal estimate</div><div id="screwCountdown" class="num">—</div><div id="screwDate" class="mini">~13 weeks post-op</div></div></div><div class="spacer"></div><div class="notice" id="meniscusWindow">Meniscus symptom decision window opens mid-August. Track symptoms calmly; trends beat panic.</div></div>
+    <div class="card"><h2>Mission Progress</h2><div class="grid2"><div class="metric"><div class="label">No Slither</div><div><span id="slitherStreak" class="num">0</span><span class="label"> / 90</span></div><div id="slitherLeft" class="mini">90 days left</div><div class="progress"><div id="slitherBar" class="bar flat"></div></div></div><div class="metric"><div class="label">Forge compliance</div><div><span id="forgeCount" class="num">0</span><span class="label"> / 175</span></div><div id="finishLeft" class="mini">174 days left</div><div class="progress"><div id="forgeBar" class="bar flat"></div></div></div></div></div>
+    <div class="card"><h2>Three Pillars</h2><div class="grid3"><div class="metric"><div class="label">Guard Attention</div><div id="guardPct" class="num">0%</div><div class="progress"><div id="guardBar" class="bar"></div></div></div><div class="metric"><div class="label">Rebuild Body</div><div id="bodyPct" class="num">0%</div><div class="progress"><div id="bodyBar" class="bar"></div></div></div><div class="metric"><div class="label">Move Life</div><div id="lifePct" class="num">0%</div><div class="progress"><div id="lifeBar" class="bar"></div></div></div></div></div>
+    <div class="card"><h2>Today’s Floor</h2><div id="floor" class="floor"></div></div>
+    <div class="card"><h2>Weekly Reflection</h2><p class="muted small">Saturday 5 PM is the weekly review checkpoint. The app builds a review packet from your logs so you can paste it into ChatGPT for recommendations.</p><button class="action gold" data-jump="weekly">Open Weekly Review</button></div>
+  </section>
+
+  <section id="today" class="page">
+    <div class="hero"><div class="kicker">Daily Tap Log</div><h1>Tap the boxes.</h1><div class="sub">This is the whole system. One vertical log for the active shift day.</div><div class="rule" id="todayHeader">Loading active day…</div></div>
+    <div class="card"><h2>Pain Check</h2><p class="small muted">Pain autosaves and never hurts your score. If either pain is over 6, the app opens a detail box so you can capture why.</p><div class="painBlock"><h3>Right ankle / medial malleolus</h3><div class="rangeRow"><input id="anklePainSlider" type="range" min="0" max="10" step="1" /><div class="painValue" id="anklePainValue">0</div></div><div class="spacer"></div><label class="formLabel">Ankle pain / load note</label><input id="anklePainNote" placeholder="Example: sharp over medial malleolus with single-leg loading" /><div id="anklePainDetailWrap" class="painDetail hidden"><label class="formLabel">Pain >6 detail — what caused it?</label><textarea id="anklePainDetail" placeholder="What were you doing? Exact spot? Sharp/dull/burning? Swelling? Instability? What eased it?"></textarea></div></div><div class="painBlock"><h3>Left knee</h3><div class="rangeRow"><input id="kneePainSlider" type="range" min="0" max="10" step="1" /><div class="painValue" id="kneePainValue">0</div></div><div class="spacer"></div><label class="formLabel">Knee pain / load note</label><input id="kneePainNote" placeholder="Example: front-medial knee pain during extension or long shift" /><div id="kneePainDetailWrap" class="painDetail hidden"><label class="formLabel">Pain >6 detail — what caused it?</label><textarea id="kneePainDetail" placeholder="What movement/load? Exact spot? Clicking/catching/shifting? Swelling? What reduced it?"></textarea></div></div><button class="action secondary" id="savePain">Save pain now</button></div>
+    <div id="checks"></div>
+  </section>
+
+  <section id="progress" class="page">
+    <div class="card"><h2>Progress You’ve Made</h2><div class="grid2"><div class="metric"><div class="label">Days logged</div><div id="daysLogged" class="num">0</div></div><div class="metric"><div class="label">Compliant days</div><div id="compliantDays" class="num">0</div></div><div class="metric"><div class="label">Current No Slither streak</div><div id="progressStreak" class="num">0</div></div><div class="metric"><div class="label">7-day average</div><div id="sevenAvg" class="num">0%</div></div></div></div>
+    <div class="card"><h2>Last 28 Days</h2><div class="history" id="historyGrid"></div><div class="spacer"></div><div class="small muted">Green = 80%+, yellow = 60–79%, red = logged below 60%, dim = not logged.</div></div>
+    <div class="card"><h2>Pain Trend</h2><h3>Right ankle / medial malleolus</h3><div class="history" id="anklePainGrid"></div><div class="spacer"></div><h3>Left knee</h3><div class="history" id="kneePainGrid"></div><div class="spacer"></div><div class="small muted">Green 0–3, yellow 4–5, orange 6–7, red 8–10. Pain >6 should include a detail note.</div></div>
+    <div class="card"><h2>Insights</h2><div id="insights"></div></div>
+    <div class="card"><h2>Monthly Physique</h2><div class="formGrid"><div><label class="formLabel">Date</label><input id="physDate" type="date" /></div><div><label class="formLabel">Weight</label><input id="physWeight" inputmode="decimal" placeholder="lb" /></div><div><label class="formLabel">Waist</label><input id="physWaist" inputmode="decimal" placeholder="in" /></div><div><label class="formLabel">Status</label><select id="physStatus"><option>Rebuild</option><option>Cut</option><option>Maintain</option><option>Recovery week</option></select></div></div><div class="spacer"></div><label class="formLabel">One adjustment</label><input id="physAdjust" placeholder="One change for next month" /><div class="spacer"></div><button class="action gold" id="savePhys">Save physique update</button><div class="spacer"></div><table id="physTable"></table></div>
+  </section>
+
+  <section id="weekly" class="page">
+    <div class="hero"><div class="kicker">Saturday 5 PM</div><h1>Weekly Review.</h1><div class="sub">A short journal + a generated packet you can paste into ChatGPT for sharper recommendations.</div><div class="rule" id="weeklyDateLabel">This week</div></div>
+    <div class="card"><h2>How did this week feel?</h2><div class="formGrid">
+      <div><label class="formLabel">Body / pain</label><select id="wkBody"><option value="">Pick one</option><option>Green - controlled</option><option>Yellow - manageable</option><option>Red - limiting</option></select></div>
+      <div><label class="formLabel">Sleep / energy</label><select id="wkSleep"><option value="">Pick one</option><option>Good</option><option>Mixed</option><option>Poor</option></select></div>
+      <div><label class="formLabel">Work demand</label><select id="wkWork"><option value="">Pick one</option><option>Low</option><option>Moderate</option><option>Heavy</option></select></div>
+      <div><label class="formLabel">Stress / mood</label><select id="wkStress"><option value="">Pick one</option><option>Stable</option><option>Stretched</option><option>Rough</option></select></div>
+      <div><label class="formLabel">Attention control</label><select id="wkAttention"><option value="">Pick one</option><option>Strong</option><option>Mixed</option><option>Slipping</option></select></div>
+      <div><label class="formLabel">Connection / outside</label><select id="wkConnection"><option value="">Pick one</option><option>Good</option><option>Some</option><option>Isolated</option></select></div>
+    </div><div class="spacer"></div><label class="formLabel">Biggest win</label><input id="wkWin" placeholder="What moved forward?" /><div class="spacer"></div><label class="formLabel">Main friction</label><input id="wkFriction" placeholder="What kept pulling you off track?" /><div class="spacer"></div><label class="formLabel">One note for ChatGPT to review</label><textarea id="wkNote" placeholder="Pain, work, sleep, cravings, motivation, recovery, anything that matters."></textarea><div class="spacer"></div><button class="action gold" id="saveWeekly">Save weekly reflection</button></div>
+    <div class="card"><h2>Review Packet</h2><div class="notice">Copy this and paste it to ChatGPT on Saturday at 5 PM. It includes your daily data, ankle/knee pain trends, weekly categories, and recommendation prompts.</div><div class="spacer"></div><textarea id="weeklyPacket" readonly></textarea><div class="spacer"></div><button class="action" id="copyWeekly">Copy weekly packet</button><div class="spacer"></div><div class="grid2"><a class="action secondary" href="weekly-reflection-saturday-5pm.ics" download>Saturday weekly reminder</a><a class="action secondary" href="northstar-daily-checkin-5pm.ics" download>Daily 5 PM reminder</a></div></div>
+  </section>
+
+  <section id="backup" class="page">
+    <div class="card"><h2>Reliability</h2><div class="notice"><b>This app updates instantly on this phone/browser.</b><br>Every checkbox, ankle/knee pain inputs, why line, weekly reflection, and restore action writes to local storage. For six-month reliability, copy or download a backup once a week — Saturday after reflection is ideal — and before clearing browser data.</div><div class="spacer"></div><div class="saveStatus"><span class="saveDot"></span><span id="saveStatusBackup">Ready to save</span></div></div>
+    <div class="card"><h2>Weekly backup</h2><div class="notice">Last backup: <b id="lastBackup">Never</b></div><div class="spacer"></div><button class="action" id="copyBackup">Copy backup text</button><div class="spacer"></div><button class="action secondary" id="downloadBackup">Download backup file</button><div class="spacer"></div><button class="action secondary" id="refreshBackup">Show backup text</button><div class="spacer"></div><textarea id="backupText" placeholder="Backup text appears here. You can also paste backup text here to restore."></textarea><div class="spacer"></div><button class="action gold" id="restoreBackup">Restore pasted backup</button></div>
+    <div class="card"><h2>Install on phone</h2><ol class="small muted" style="line-height:1.7"><li>Upload <b>all unzipped files</b> to GitHub Pages, not the ZIP only.</li><li>Open your GitHub Pages URL in Safari.</li><li>Tap Share → Add to Home Screen.</li><li>Name it Six-Month Forge.</li><li>Use the calendar file or Google Calendar event for the 5 PM reminder/email.</li></ol><div class="spacer"></div><a class="action secondary" href="northstar-daily-checkin-5pm.ics" download>Download daily 5 PM reminder</a></div>
+  </section>
+</div>
+
+<script>
+'use strict';
+const VERSION = 10;
+const STORE_KEY = 'sixMonthForge.v6';
+const START_DATE = '2026-07-10';
+const FINISH_DATE = '2026-12-31';
+const SURGERY_DATE = '2026-05-14';
+const SCREW_ESTIMATE_DATE = addDays(parseLocalDate(SURGERY_DATE), 91);
+const MENISCUS_WINDOW_DATE = '2026-08-15';
+const DAILY_REMINDER_TIME = '5:00 PM';
+const REMINDER_FILE = 'northstar-daily-checkin-5pm.ics';
+
+const checklist = [
+  {id:'blocker', pillar:'guard', label:'Blocker active', why:'Prevents bargaining before fatigue wins.'},
+  {id:'noSlither', pillar:'guard', label:'No Slither', why:'Main addiction target. 0 minutes.'},
+  {id:'urge', pillar:'guard', label:'Urge handled / not needed', why:'Respond to the urge; do not argue with it.'},
+  {id:'replacement', pillar:'guard', label:'Replacement action', why:'Real life gets a vote before screens.'},
+  {id:'rehab', pillar:'body', label:'Rehab or mobility minimum', why:'Correct minimum based on pain, work, and restrictions.'},
+  {id:'sleep', pillar:'body', label:'Sleep / recovery protected', why:'Night-shift recovery floor.'},
+  {id:'bg', pillar:'body', label:'BG safety handled', why:'Type 1 diabetes basics checked for shift/recovery.'},
+  {id:'fluids', pillar:'body', label:'2–3L fluids', why:'Basic recovery support.'},
+  {id:'peptides', pillar:'body', label:'Peptides taken', why:'Only if following current clinician-approved plan.'},
+  {id:'protein', pillar:'body', label:'Protein hit', why:'Muscle retention + healing.'},
+  {id:'creatine', pillar:'body', label:'Creatine taken', why:'Strength/rebuild consistency.'},
+  {id:'logged', pillar:'life', label:'Fast log complete', why:'Keeps tracker from becoming the task.'},
+  {id:'phoneAway', pillar:'life', label:'Phone away from bed', why:'Protects post-shift sleep.'},
+  {id:'outside', pillar:'life', label:'Outside / social touch', why:'Mood/environment support.'}
+];
+
+const $ = id => document.getElementById(id);
+const pct = n => Math.round((Number(n)||0)*100) + '%';
+const clamp = (n,min,max)=>Math.max(min,Math.min(max,n));
+function parseLocalDate(s){ const [y,m,d] = String(s).split('-').map(Number); return new Date(y,m-1,d); }
+function isoDate(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function prettyDate(s){ const d = parseLocalDate(s); return d.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}); }
+function addDays(d,n){ const x = new Date(d); x.setDate(x.getDate()+n); return x; }
+function daysBetween(a,b){ return Math.floor((parseLocalDate(b)-parseLocalDate(a))/86400000); }
+function activeDate(){ const now = new Date(); const d = new Date(now); if(now.getHours()<10) d.setDate(d.getDate()-1); const start=parseLocalDate(START_DATE); if(d<start) return START_DATE; return isoDate(d); }
+function weekStartSaturday(dateStr){ const d = parseLocalDate(dateStr); const day = d.getDay(); const diff = (day - 6 + 7) % 7; d.setDate(d.getDate()-diff); return isoDate(d); }
+function toast(msg='Saved'){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1350); }
+function debounce(fn,ms=400){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args),ms); }; }
+function safeGet(key){ try { return localStorage.getItem(key); } catch(e){ return null; } }
+function safeSet(key,val){ try { localStorage.setItem(key,val); return true; } catch(e){ toast('Storage blocked. Use backup.'); return false; } }
+function defaultState(){ return {version:VERSION, why:'My reason: get back to sport, work, freedom, and control.', days:{}, physique:[], physDraft:{}, weekly:{}, lastBackup:'', lastSaved:'', reminder:{daily:'5 PM', calendarCreated:false}}; }
+function migrate(raw){
+  if(!raw) return defaultState();
+  try{
+    const old = JSON.parse(raw);
+    const s = defaultState();
+    Object.assign(s, old||{});
+    s.version = VERSION;
+    s.days = s.days || {};
+    s.physique = Array.isArray(s.physique) ? s.physique : [];
+    s.physDraft = s.physDraft || {};
+    s.weekly = s.weekly || {};
+    s.lastSaved = s.lastSaved || '';
+    s.reminder = s.reminder || {daily:'5 PM', calendarCreated:false};
+    Object.keys(s.days).forEach(k=>{
+      s.days[k].checks = s.days[k].checks || {};
+      if(s.days[k].anklePain === undefined && s.days[k].pain !== undefined) s.days[k].anklePain = s.days[k].pain;
+      if(!s.days[k].anklePainNote && s.days[k].painNote) s.days[k].anklePainNote = s.days[k].painNote;
+      s.days[k].anklePain = Number.isFinite(+s.days[k].anklePain) ? +s.days[k].anklePain : 0;
+      s.days[k].anklePainNote = s.days[k].anklePainNote || '';
+      s.days[k].anklePainDetail = s.days[k].anklePainDetail || '';
+      s.days[k].kneePain = Number.isFinite(+s.days[k].kneePain) ? +s.days[k].kneePain : 0;
+      s.days[k].kneePainNote = s.days[k].kneePainNote || '';
+      s.days[k].kneePainDetail = s.days[k].kneePainDetail || '';
+    });
+    return s;
+  }catch(e){
+    return defaultState();
+  }
+}
+let state = migrate(safeGet(STORE_KEY));
+function save(){ state.version = VERSION; state.lastSaved = new Date().toISOString(); const ok = safeSet(STORE_KEY, JSON.stringify(state)); renderSaveStatus(); return ok; }
+function renderSaveStatus(){ const text = state.lastSaved ? 'Last saved: '+new Date(state.lastSaved).toLocaleTimeString([], {hour:'numeric', minute:'2-digit'}) : 'Ready to save'; ['saveStatusHome','saveStatusBackup'].forEach(id=>{ const el=$(id); if(el) el.textContent=text; }); }
+function day(date=activeDate()){ if(!state.days[date]) state.days[date] = {checks:{}, anklePain:0, anklePainNote:'', anklePainDetail:'', kneePain:0, kneePainNote:'', kneePainDetail:''}; return state.days[date]; }
+function scoreFor(date){ const d = state.days[date]; if(!d) return {overall:0, guard:0, body:0, life:0, logged:false}; const calc = p => { const items=checklist.filter(x=>x.pillar===p); return items.filter(x=>d.checks && d.checks[x.id]).length / items.length; }; const guard=calc('guard'), body=calc('body'), life=calc('life'); const overall = checklist.filter(x=>d.checks && d.checks[x.id]).length / checklist.length; const painLogged = !!d.anklePainNote || !!d.anklePainDetail || !!d.kneePainNote || !!d.kneePainDetail || (d.anklePain||0)>0 || (d.kneePain||0)>0; return {overall, guard, body, life, logged:Object.keys(d.checks||{}).length>0 || painLogged}; }
+function currentNoSlitherStreak(upTo=activeDate()){ let streak=0; let d=parseLocalDate(upTo); while(d>=parseLocalDate(START_DATE)){ const ds=isoDate(d); if(state.days[ds]?.checks?.noSlither) streak++; else break; d.setDate(d.getDate()-1); } return streak; }
+function forgeCount(upTo=activeDate()){ let count=0; let d=parseLocalDate(START_DATE); const end=parseLocalDate(upTo); while(d<=end){ if(scoreFor(isoDate(d)).overall >= .6) count++; d.setDate(d.getDate()+1); } return count; }
+function setWidth(id,value){ const el=$(id); if(el) el.style.width = clamp(value,0,1)*100+'%'; }
+function modeFor(score){ if(score>=.8) return ['GREEN','green','Build capacity: full row + one real-world action.']; if(score>=.6) return ['YELLOW','yellow','Preserve momentum: minimum row + No Slither.']; return ['RED','red','Protect floor: blocker, No Slither, BG/sleep/recovery basics.']; }
+function renderAll(){ renderHome(); renderChecks(); renderProgress(); renderWeekly(); renderBackupStatus(); renderSaveStatus(); }
+function renderBackupStatus(){ const el=$('lastBackup'); if(el) el.textContent = state.lastBackup ? new Date(state.lastBackup).toLocaleString() : 'Never'; }
+function renderHome(){
+  const date=activeDate(), s=scoreFor(date), [mode, cls, next]=modeFor(s.overall);
+  $('whyLine').value = state.why || '';
+  $('activeDate').textContent = prettyDate(date);
+  $('shiftRule').textContent = new Date().getHours()<10 ? 'Before 10 AM: logging last night’s shift day' : '10 AM or later: logging current day';
+  $('modePill').textContent=mode; $('modePill').className='pill '+cls; $('nextAction').textContent=next;
+  $('todayScore').textContent=pct(s.overall); setWidth('todayBar',s.overall);
+  $('guardPct').textContent=pct(s.guard); setWidth('guardBar',s.guard);
+  $('bodyPct').textContent=pct(s.body); setWidth('bodyBar',s.body);
+  $('lifePct').textContent=pct(s.life); setWidth('lifeBar',s.life);
+  const streak=currentNoSlitherStreak(date); $('slitherStreak').textContent=streak; $('slitherLeft').textContent=Math.max(0,90-streak)+' days left'; setWidth('slitherBar',streak/90);
+  const fc=forgeCount(date); $('forgeCount').textContent=fc; const left=Math.max(0,daysBetween(date,FINISH_DATE)); $('finishLeft').textContent=left+' days left'; setWidth('forgeBar',fc/175);
+  const post = Math.max(0, daysBetween(SURGERY_DATE, date)); $('daysPostOp').textContent = post;
+  const screwLeft = Math.ceil((SCREW_ESTIMATE_DATE - parseLocalDate(date))/86400000); $('screwCountdown').textContent = screwLeft>=0 ? screwLeft : '0'; $('screwDate').textContent = 'estimate: '+SCREW_ESTIMATE_DATE.toLocaleDateString(undefined,{month:'short',day:'numeric'});
+  $('meniscusWindow').textContent = parseLocalDate(date) >= parseLocalDate(MENISCUS_WINDOW_DATE) ? 'Meniscus symptom decision window is open: use trends, mechanical symptoms, and clinician exam — not panic.' : 'Meniscus symptom decision window opens mid-August. Track symptoms calmly; trends beat panic.';
+  const floorIds = ['noSlither','blocker','replacement','bg','sleep','protein'];
+  $('floor').innerHTML = floorIds.map(id=>{ const item=checklist.find(x=>x.id===id); return `<div class="floorItem"><div>${item.label}</div><span>${day(date).checks[id]?'✅':'⬜'}</span></div>`; }).join('');
+}
+function updatePainDetailVisibility(){
+  const ankle=+$('anklePainSlider').value, knee=+$('kneePainSlider').value;
+  $('anklePainValue').textContent=ankle; $('kneePainValue').textContent=knee;
+  $('anklePainDetailWrap').classList.toggle('hidden', ankle<=6);
+  $('kneePainDetailWrap').classList.toggle('hidden', knee<=6);
+}
+function savePainData(show=true){
+  const d=day(activeDate());
+  d.anklePain=+$('anklePainSlider').value; d.anklePainNote=$('anklePainNote').value; d.anklePainDetail=$('anklePainDetail').value;
+  d.kneePain=+$('kneePainSlider').value; d.kneePainNote=$('kneePainNote').value; d.kneePainDetail=$('kneePainDetail').value;
+  updatePainDetailVisibility(); save(); renderHome(); renderProgress(); renderWeekly();
+  if(show){
+    const needs=[]; if(d.anklePain>6 && !d.anklePainDetail.trim()) needs.push('ankle'); if(d.kneePain>6 && !d.kneePainDetail.trim()) needs.push('knee');
+    toast(needs.length ? 'Pain saved — add >6 detail for '+needs.join(' + ') : 'Pain saved');
+  }
+}
+function renderChecks(){
+  const date=activeDate(); const d=day(date); $('todayHeader').textContent = `${prettyDate(date)} • ${new Date().getHours()<10?'last night shift day':'current day'}`;
+  $('anklePainSlider').value = d.anklePain || 0; $('anklePainValue').textContent = d.anklePain || 0; $('anklePainNote').value = d.anklePainNote || ''; $('anklePainDetail').value = d.anklePainDetail || '';
+  $('kneePainSlider').value = d.kneePain || 0; $('kneePainValue').textContent = d.kneePain || 0; $('kneePainNote').value = d.kneePainNote || ''; $('kneePainDetail').value = d.kneePainDetail || '';
+  updatePainDetailVisibility();
+  let html=''; const names={guard:'Guard Attention',body:'Rebuild Body',life:'Move Life'};
+  ['guard','body','life'].forEach(p=>{
+    const items = checklist.filter(x=>x.pillar===p); const done = items.filter(x=>d.checks[x.id]).length;
+    html += `<div class="groupTitle"><h2>${names[p]}</h2><span>${done}/${items.length}</span></div>`;
+    items.forEach(item=>{
+      const checked = !!d.checks[item.id];
+      html += `<label class="check ${p} ${checked?'done':''}"><input type="checkbox" data-check="${item.id}" ${checked?'checked':''}/><div><strong>${item.label}</strong><small>${item.why}</small></div></label>`;
+    });
+  });
+  $('checks').innerHTML = html;
+  document.querySelectorAll('[data-check]').forEach(cb=>cb.addEventListener('change',e=>{ day(date).checks[e.target.dataset.check] = e.target.checked; day(date).checks.logged = true; save(); renderAll(); toast('Progress updated'); }));
+}
+function renderProgress(){
+  const end=activeDate(); let logged=0, compliant=0, sum7=0, n7=0; const start=parseLocalDate(START_DATE); const e=parseLocalDate(end);
+  for(let d=new Date(start); d<=e; d.setDate(d.getDate()+1)){ const ds=isoDate(d); const sc=scoreFor(ds); if(sc.logged) logged++; if(sc.overall>=.6) compliant++; }
+  for(let i=0;i<7;i++){ const d=addDays(e,-i); if(d>=start){ sum7 += scoreFor(isoDate(d)).overall; n7++; } }
+  $('daysLogged').textContent=logged; $('compliantDays').textContent=compliant; $('progressStreak').textContent=currentNoSlitherStreak(end); $('sevenAvg').textContent=pct(n7?sum7/n7:0);
+  let hist='', anklePain='', kneePain='';
+  for(let i=27;i>=0;i--){
+    const d=addDays(e,-i); const ds=isoDate(d); const sc=scoreFor(ds); let cls='';
+    if(sc.logged){ cls=sc.overall>=.8?'good':sc.overall>=.6?'okay':'bad'; }
+    hist += `<div class="daybox ${cls}" title="${ds}">${d.getDate()}</div>`;
+    const a = state.days[ds]?.anklePain; const k = state.days[ds]?.kneePain;
+    const ac = a>=8?'pain3':a>=6?'pain2':a>=4?'pain1':Number.isFinite(+a)?'pain0':'';
+    const kc = k>=8?'pain3':k>=6?'pain2':k>=4?'pain1':Number.isFinite(+k)?'pain0':'';
+    anklePain += `<div class="daybox ${ac}" title="${ds} ankle ${a ?? '—'}">${Number.isFinite(+a)?a:''}</div>`;
+    kneePain += `<div class="daybox ${kc}" title="${ds} knee ${k ?? '—'}">${Number.isFinite(+k)?k:''}</div>`;
+  }
+  $('historyGrid').innerHTML=hist; $('anklePainGrid').innerHTML=anklePain; $('kneePainGrid').innerHTML=kneePain;
+  renderPhys(); renderInsights();
+}
+function renderInsights(){
+  const end=parseLocalDate(activeDate()); const last7=[]; const prev7=[];
+  for(let i=0;i<7;i++) last7.push(isoDate(addDays(end,-i)));
+  for(let i=7;i<14;i++) prev7.push(isoDate(addDays(end,-i)));
+  const avg = (dates, fn) => dates.reduce((a,d)=>a+fn(d),0)/dates.length;
+  const s7=avg(last7,d=>scoreFor(d).overall), sPrev=avg(prev7,d=>scoreFor(d).overall);
+  const ankle7=avg(last7,d=>Number(state.days[d]?.anklePain||0)); const anklePrev=avg(prev7,d=>Number(state.days[d]?.anklePain||0));
+  const knee7=avg(last7,d=>Number(state.days[d]?.kneePain||0)); const kneePrev=avg(prev7,d=>Number(state.days[d]?.kneePain||0));
+  const guard7=avg(last7,d=>scoreFor(d).guard); const body7=avg(last7,d=>scoreFor(d).body); const life7=avg(last7,d=>scoreFor(d).life);
+  const out=[];
+  if(s7>=.8) out.push('✅ You are in a strong rhythm: preserve the system, do not add complexity.');
+  else if(s7>=.6) out.push('🟡 Momentum is alive: protect No Slither + recovery basics before chasing extra tasks.');
+  else out.push('🔴 Floor mode: minimum checklist, blocker, BG/sleep, and one replacement action only.');
+  if(ankle7-anklePrev>=1.5) out.push('⚠️ Ankle pain is trending up versus the prior week. Reduce load spikes and bring exact pain notes to Dr. Ross/PT.');
+  if(knee7-kneePrev>=1.5) out.push('⚠️ Knee pain is trending up versus the prior week. Watch swelling, shifting, mechanical symptoms, and keep body work inside PT/surgeon restrictions.');
+  const highMissing = last7.filter(d=>{ const x=state.days[d]||{}; return (x.anklePain>6 && !String(x.anklePainDetail||'').trim()) || (x.kneePain>6 && !String(x.kneePainDetail||'').trim()); });
+  if(highMissing.length) out.push('📝 Pain over 6 needs detail: what caused it, exact location, load/movement, swelling/instability, and what helped.');
+  if(guard7<body7 && guard7<life7) out.push('🧠 Guard Attention is the weak link this week: make access harder, not motivation louder.');
+  if(body7<.55) out.push('🦵 Rebuild Body is under-supported: prioritize sleep, BG safety, protein, fluids, and approved rehab minimum.');
+  if(life7<.55) out.push('🌲 Move Life is low: one outside/social touch will stabilize mood more than another app tweak.');
+  $('insights').innerHTML = out.map(x=>`<div class="insight">${x}</div>`).join('');
+}
+function renderPhys(){
+  const draft = state.physDraft || {};
+  $('physDate').value = draft.date || activeDate();
+  $('physWeight').value = draft.weight || '';
+  $('physWaist').value = draft.waist || '';
+  $('physStatus').value = draft.status || 'Rebuild';
+  $('physAdjust').value = draft.adjust || '';
+  const rows = [...state.physique].sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,8);
+  $('physTable').innerHTML = '<tr><th>Date</th><th>Weight</th><th>Waist</th><th>Status</th></tr>' + rows.map(r=>`<tr><td>${r.date||''}</td><td>${r.weight||''}</td><td>${r.waist||''}</td><td>${r.status||''}<br><span class="muted small">${r.adjust||''}</span></td></tr>`).join('');
+}
+function savePhysDraft(show=false){
+  state.physDraft = {date:$('physDate').value||activeDate(),weight:$('physWeight').value,waist:$('physWaist').value,status:$('physStatus').value,adjust:$('physAdjust').value};
+  save();
+  if(show) toast('Physique draft saved');
+}
+function savePhys(){
+  savePhysDraft(false);
+  const r = state.physDraft || {};
+  if(!r.weight && !r.waist && !r.adjust){ toast('Add weight, waist, or adjustment first'); return; }
+  state.physique.push({date:r.date||activeDate(),weight:r.weight||'',waist:r.waist||'',status:r.status||'Rebuild',adjust:r.adjust||''});
+  state.physDraft = {date:activeDate(),status:'Rebuild'};
+  save(); renderAll(); toast('Physique saved');
+}
+function renderWeekly(){
+  const wk=weekStartSaturday(activeDate()); const w=state.weekly[wk] || {}; $('weeklyDateLabel').textContent = `Week starting ${prettyDate(wk)} • target review Saturday 5 PM`;
+  ['Body','Sleep','Work','Stress','Attention','Connection'].forEach(k=>{ const el=$('wk'+k); if(el) el.value=w[k.toLowerCase()]||''; });
+  $('wkWin').value=w.win||''; $('wkFriction').value=w.friction||''; $('wkNote').value=w.note||''; $('weeklyPacket').value = buildWeeklyPacket(wk);
+}
+function saveWeekly(show=true){ const wk=weekStartSaturday(activeDate()); state.weekly[wk] = {body:$('wkBody').value,sleep:$('wkSleep').value,work:$('wkWork').value,stress:$('wkStress').value,attention:$('wkAttention').value,connection:$('wkConnection').value,win:$('wkWin').value,friction:$('wkFriction').value,note:$('wkNote').value,updated:new Date().toISOString()}; save(); $('weeklyPacket').value = buildWeeklyPacket(wk); if(show) toast('Weekly reflection saved'); }
+function buildWeeklyPacket(wk){
+  const start=parseLocalDate(wk); const dates=Array.from({length:7},(_,i)=>isoDate(addDays(start,i))); const w=state.weekly[wk]||{};
+  const avg=(fn)=>dates.reduce((a,d)=>a+fn(d),0)/dates.length; const avgScore=avg(d=>scoreFor(d).overall); const guard=avg(d=>scoreFor(d).guard), body=avg(d=>scoreFor(d).body), life=avg(d=>scoreFor(d).life);
+  const ankleAvg=avg(d=>Number(state.days[d]?.anklePain||0)); const kneeAvg=avg(d=>Number(state.days[d]?.kneePain||0));
+  const daily = dates.map(d=>{ const x=state.days[d]||{}; return `- ${d}: score ${pct(scoreFor(d).overall)}, ankle ${x.anklePain ?? 0} (${x.anklePainNote || '—'}; detail: ${x.anklePainDetail || '—'}), knee ${x.kneePain ?? 0} (${x.kneePainNote || '—'}; detail: ${x.kneePainDetail || '—'})`; }).join('\n');
+  return `Six-Month Forge Weekly Reflection
+Week starting: ${wk}
+Review target: Saturday 5 PM
+
+Scores
+- 7-day average: ${pct(avgScore)}
+- Guard Attention: ${pct(guard)}
+- Rebuild Body: ${pct(body)}
+- Move Life: ${pct(life)}
+- Current No Slither streak: ${currentNoSlitherStreak(activeDate())}/90
+- Avg right ankle/medial malleolus pain: ${ankleAvg.toFixed(1)}/10
+- Avg left knee pain: ${kneeAvg.toFixed(1)}/10
+
+Weekly journal
+- Body/pain: ${w.body || '—'}
+- Sleep/energy: ${w.sleep || '—'}
+- Work demand: ${w.work || '—'}
+- Stress/mood: ${w.stress || '—'}
+- Attention control: ${w.attention || '—'}
+- Connection/outside: ${w.connection || '—'}
+- Biggest win: ${w.win || '—'}
+- Main friction: ${w.friction || '—'}
+- Note: ${w.note || '—'}
+
+Daily detail
+${daily}
+
+Please review this and recommend: 1 Critical Mission, 1 Body Mission, 1 Life Mission, 1 Optional Power Move only if capacity is good, dopamine replacement, completed-day definition, and a Northstar Score /100. Pay extra attention to any knee or ankle pain over 6 and whether the detail explains the trigger/load.`;
+}
+function flushCurrentInputs(){
+  try{
+    if($('whyLine')) state.why = $('whyLine').value;
+    if($('anklePainSlider') && $('kneePainSlider')){
+      const d = day(activeDate());
+      d.anklePain = +$('anklePainSlider').value; d.anklePainNote = $('anklePainNote').value; d.anklePainDetail = $('anklePainDetail').value;
+      d.kneePain = +$('kneePainSlider').value; d.kneePainNote = $('kneePainNote').value; d.kneePainDetail = $('kneePainDetail').value;
+    }
+    if($('wkBody')){
+      const wk=weekStartSaturday(activeDate());
+      const values = {body:$('wkBody').value,sleep:$('wkSleep').value,work:$('wkWork').value,stress:$('wkStress').value,attention:$('wkAttention').value,connection:$('wkConnection').value,win:$('wkWin').value,friction:$('wkFriction').value,note:$('wkNote').value,updated:new Date().toISOString()};
+      if(Object.values(values).some(v=>String(v||'').trim())) state.weekly[wk]=values;
+    }
+    if($('physDate')) state.physDraft = {date:$('physDate').value||activeDate(),weight:$('physWeight').value,waist:$('physWaist').value,status:$('physStatus').value,adjust:$('physAdjust').value};
+    save();
+  }catch(e){ safeSet(STORE_KEY, JSON.stringify(state)); }
+}
+function backupObject(){ return {app:'Six-Month Forge', version:VERSION, exportedAt:new Date().toISOString(), activeDate:activeDate(), reminder:'Daily 5 PM Northstar check-in; Google Calendar event preferred for email reminders.', state}; }
+function showBackup(){ flushCurrentInputs(); $('backupText').value = JSON.stringify(backupObject(), null, 2); }
+function markBackup(){ state.lastBackup = new Date().toISOString(); save(); renderBackupStatus(); }
+async function copyText(text, msg){ try{ await navigator.clipboard.writeText(text); toast(msg||'Copied'); } catch(e){ toast('Copy failed; select text manually'); } }
+function download(filename, text, type='application/json'){ const blob=new Blob([text],{type}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500); }
+function restore(){ try{ const parsed=JSON.parse($('backupText').value); state=migrate(JSON.stringify(parsed.state||parsed)); save(); renderAll(); toast('Backup restored'); }catch(e){ toast('Could not restore'); } }
+function init(){
+  renderAll();
+  document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>showPage(btn.dataset.page)));
+  document.querySelectorAll('[data-jump]').forEach(btn=>btn.addEventListener('click',()=>showPage(btn.dataset.jump)));
+  const saveWhy = (show=true)=>{state.why=$('whyLine').value; save(); if(show) toast('Why saved');};
+  $('saveWhy').addEventListener('click',()=>saveWhy(true));
+  $('whyLine').addEventListener('input',debounce(()=>saveWhy(false),500));
+  const autoSavePain = debounce(()=>savePainData(false),450);
+  ['anklePainSlider','kneePainSlider'].forEach(id=>$(id).addEventListener('input',()=>{ updatePainDetailVisibility(); autoSavePain(); }));
+  ['anklePainNote','anklePainDetail','kneePainNote','kneePainDetail'].forEach(id=>$(id).addEventListener('input',autoSavePain));
+  $('savePain').addEventListener('click',()=>savePainData(true));
+  $('savePhys').addEventListener('click',savePhys);
+  const autoSavePhysDraft = debounce(()=>savePhysDraft(false),600);
+  ['physDate','physWeight','physWaist','physStatus','physAdjust'].forEach(id=>$(id).addEventListener('input',autoSavePhysDraft));
+  $('saveWeekly').addEventListener('click',()=>saveWeekly(true));
+  const autoSaveWeekly = debounce(()=>saveWeekly(false),700);
+  ['wkBody','wkSleep','wkWork','wkStress','wkAttention','wkConnection','wkWin','wkFriction','wkNote'].forEach(id=>$(id).addEventListener('input',autoSaveWeekly));
+  $('copyWeekly').addEventListener('click',()=>copyText($('weeklyPacket').value,'Weekly packet copied'));
+  $('refreshBackup').addEventListener('click',showBackup);
+  $('copyBackup').addEventListener('click',()=>{ showBackup(); copyText($('backupText').value,'Backup copied'); markBackup(); });
+  $('downloadBackup').addEventListener('click',()=>{ download(`six-month-forge-backup-${activeDate()}.json`,JSON.stringify(backupObject(),null,2)); markBackup(); toast('Backup downloaded'); });
+  $('restoreBackup').addEventListener('click',restore);
+  document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden') flushCurrentInputs(); });
+  window.addEventListener('beforeunload',()=>flushCurrentInputs());
+  if('serviceWorker' in navigator){ navigator.serviceWorker.register('service-worker.js').catch(()=>{}); }
+  setTimeout(()=>{ try{ const k='sixMonthForge.storageTest'; localStorage.setItem(k,'ok'); localStorage.removeItem(k); } catch(e){ toast('Storage blocked: use Backup'); } },300);
+}
+function showPage(page){ flushCurrentInputs(); document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); $(page).classList.add('active'); document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page)); window.scrollTo({top:0,behavior:'smooth'}); renderAll(); }
+init();
+</script>
+</body>
+</html>

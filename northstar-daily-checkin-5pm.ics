@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Six-Month Forge//Northstar Daily Check-In//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:six-month-forge-daily-checkin-5pm@northstar
+DTSTAMP:20260710T000000Z
+DTSTART;TZID=America/Los_Angeles:20260710T170000
+DTEND;TZID=America/Los_Angeles:20260710T171000
+RRULE:FREQ=DAILY
+SUMMARY:Northstar Daily Check-In
+DESCRIPTION:Open Six-Month Forge. Log sleep, pain, swelling, work demands, stress, energy, BG safety, attention control, and what you are avoiding. Complete today's boxes and protect the next right action.
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Northstar Daily Check-In in 10 minutes.
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Open Six-Month Forge now and do the daily check-in.
+END:VALARM
+END:VEVENT
+END:VCALENDAR
