@@ -43,3 +43,19 @@ Then enable GitHub Pages from `main` / root. Open the Pages URL in Safari and us
 ## Reliability
 
 This is a static local-first app. It saves reliably on the same device/browser as long as browser storage is not cleared. Use the Backup screen weekly.
+
+
+## v11 update
+- Added daily Addiction Protocol run / not-needed checkbox.
+- Added daily Reading + prayer checkbox.
+- Added daily protocol note field that autosaves and is included in weekly review packets.
+- Progress and insights now flag low protocol consistency and low reading/prayer consistency.
+- Service worker cache bumped to v11.
+
+
+## v12 update
+- Added Left ACL Reconstruction timeline using 7/1/2025 surgery date.
+- Added ACL days-post-op and 18-month durability checkpoint countdown.
+- Added Surgery Trackers card to Progress.
+- Weekly review packet now includes right ankle/foot and left ACL surgery timeline context.
+- Service worker cache bumped to v12.

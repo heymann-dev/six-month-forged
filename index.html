@@ -59,14 +59,14 @@
       <div class="kicker">Six-Month Forge</div>
       <h1>One log. Real progress.</h1>
       <div class="sub">Phone-first tracker for night-shift recovery. Log once, then watch your streaks, scores, ankle/knee pain trends, and weekly review update automatically.</div>
-      <div class="rule">Open → Log Today → Progress updates → Backup weekly.</div>
+      <div class="rule">Open → Log Today → protocol if needed → reading/prayer → Progress updates.</div>
       <div class="why"><input id="whyLine" aria-label="Why line" placeholder="My reason: get back to sport, work, freedom, and control." /><button class="action compact gold" id="saveWhy">Save why</button></div>
     </div>
     <div class="shift"><div><b>Active shift day</b><small id="shiftRule">Loading…</small></div><div id="activeDate" class="datepill">—</div></div>
-    <div class="card"><h2>Start here</h2><div class="grid2"><button class="action gold" data-jump="today">✅ Log Today</button><button class="action secondary" data-jump="progress">📈 View Progress</button></div><div class="spacer"></div><div class="notice">Use this like an app: log the active shift day, then leave. The dashboard recalculates automatically.</div><div class="spacer"></div><div class="saveStatus"><span class="saveDot"></span><span id="saveStatusHome">Ready to save</span></div></div>
+    <div class="card"><h2>Start here</h2><div class="grid2"><button class="action gold" data-jump="today">✅ Log Today</button><button class="action secondary" data-jump="progress">📈 View Progress</button></div><div class="spacer"></div><div class="notice">Use this like an app: log the active shift day, run the protocol if needed, complete reading/prayer, then leave. The dashboard recalculates automatically.</div><div class="spacer"></div><div class="saveStatus"><span class="saveDot"></span><span id="saveStatusHome">Ready to save</span></div></div>
     <div class="card"><h2>Daily reminder</h2><div class="notice"><b>5 PM daily Northstar check-in.</b><br>Calendar is the reliable way to get phone/email reminders. The app saves data locally, but a static home-screen app cannot send email by itself.</div><div class="spacer"></div><a class="action secondary" href="northstar-daily-checkin-5pm.ics" download>Download daily 5 PM calendar reminder</a></div>
     <div class="card"><div class="grid2"><div class="metric"><div class="label">Mode</div><div id="modePill" class="pill">LOG</div><div id="nextAction" class="mini">Log today.</div></div><div class="metric"><div class="label">Today score</div><div id="todayScore" class="num">0%</div><div class="progress"><div id="todayBar" class="bar"></div></div></div></div></div>
-    <div class="card"><h2>Recovery Timeline</h2><div class="grid2"><div class="metric"><div class="label">Right ankle/foot post-op</div><div id="daysPostOp" class="num">—</div><div class="mini">days since 5/14/2026 surgery</div></div><div class="metric"><div class="label">Screw removal estimate</div><div id="screwCountdown" class="num">—</div><div id="screwDate" class="mini">~13 weeks post-op</div></div></div><div class="spacer"></div><div class="notice" id="meniscusWindow">Meniscus symptom decision window opens mid-August. Track symptoms calmly; trends beat panic.</div></div>
+    <div class="card"><h2>Recovery Timeline</h2><div class="grid2"><div class="metric"><div class="label">Right ankle/foot post-op</div><div id="daysPostOp" class="num">—</div><div class="mini">days since 5/14/2026 surgery</div></div><div class="metric"><div class="label">Screw removal estimate</div><div id="screwCountdown" class="num">—</div><div id="screwDate" class="mini">~13 weeks post-op</div></div><div class="metric"><div class="label">Left ACL reconstruction</div><div id="aclDaysPostOp" class="num">—</div><div class="mini">days since 7/1/2025 surgery</div></div><div class="metric"><div class="label">ACL 18-month base</div><div id="aclCountdown" class="num">—</div><div id="aclDate" class="mini">Jan 1, 2027</div></div></div><div class="spacer"></div><div class="notice" id="aclStatus">Left ACL: tracking long-term strength, swelling, deceleration control, and confidence.</div><div class="spacer"></div><div class="notice" id="meniscusWindow">Meniscus symptom decision window opens mid-August. Track symptoms calmly; trends beat panic.</div></div>
     <div class="card"><h2>Mission Progress</h2><div class="grid2"><div class="metric"><div class="label">No Slither</div><div><span id="slitherStreak" class="num">0</span><span class="label"> / 90</span></div><div id="slitherLeft" class="mini">90 days left</div><div class="progress"><div id="slitherBar" class="bar flat"></div></div></div><div class="metric"><div class="label">Forge compliance</div><div><span id="forgeCount" class="num">0</span><span class="label"> / 175</span></div><div id="finishLeft" class="mini">174 days left</div><div class="progress"><div id="forgeBar" class="bar flat"></div></div></div></div></div>
     <div class="card"><h2>Three Pillars</h2><div class="grid3"><div class="metric"><div class="label">Guard Attention</div><div id="guardPct" class="num">0%</div><div class="progress"><div id="guardBar" class="bar"></div></div></div><div class="metric"><div class="label">Rebuild Body</div><div id="bodyPct" class="num">0%</div><div class="progress"><div id="bodyBar" class="bar"></div></div></div><div class="metric"><div class="label">Move Life</div><div id="lifePct" class="num">0%</div><div class="progress"><div id="lifeBar" class="bar"></div></div></div></div></div>
     <div class="card"><h2>Today’s Floor</h2><div id="floor" class="floor"></div></div>
@@ -76,11 +76,13 @@
   <section id="today" class="page">
     <div class="hero"><div class="kicker">Daily Tap Log</div><h1>Tap the boxes.</h1><div class="sub">This is the whole system. One vertical log for the active shift day.</div><div class="rule" id="todayHeader">Loading active day…</div></div>
     <div class="card"><h2>Pain Check</h2><p class="small muted">Pain autosaves and never hurts your score. If either pain is over 6, the app opens a detail box so you can capture why.</p><div class="painBlock"><h3>Right ankle / medial malleolus</h3><div class="rangeRow"><input id="anklePainSlider" type="range" min="0" max="10" step="1" /><div class="painValue" id="anklePainValue">0</div></div><div class="spacer"></div><label class="formLabel">Ankle pain / load note</label><input id="anklePainNote" placeholder="Example: sharp over medial malleolus with single-leg loading" /><div id="anklePainDetailWrap" class="painDetail hidden"><label class="formLabel">Pain >6 detail — what caused it?</label><textarea id="anklePainDetail" placeholder="What were you doing? Exact spot? Sharp/dull/burning? Swelling? Instability? What eased it?"></textarea></div></div><div class="painBlock"><h3>Left knee</h3><div class="rangeRow"><input id="kneePainSlider" type="range" min="0" max="10" step="1" /><div class="painValue" id="kneePainValue">0</div></div><div class="spacer"></div><label class="formLabel">Knee pain / load note</label><input id="kneePainNote" placeholder="Example: front-medial knee pain during extension or long shift" /><div id="kneePainDetailWrap" class="painDetail hidden"><label class="formLabel">Pain >6 detail — what caused it?</label><textarea id="kneePainDetail" placeholder="What movement/load? Exact spot? Clicking/catching/shifting? Swelling? What reduced it?"></textarea></div></div><button class="action secondary" id="savePain">Save pain now</button></div>
+    <div class="card"><h2>Addiction Protocol</h2><div class="notice"><b>Urge → Reset protocol:</b> interrupt access, change environment, name the trigger, set a 10-minute delay, use a preselected replacement, restore blocker/accountability if needed, then log the outcome. If no urge happened, write “no urge today.”</div><div class="spacer"></div><label class="formLabel">Protocol note</label><input id="protocolNote" placeholder="Trigger → reset → replacement → outcome, or no urge today" /></div>
     <div id="checks"></div>
   </section>
 
   <section id="progress" class="page">
     <div class="card"><h2>Progress You’ve Made</h2><div class="grid2"><div class="metric"><div class="label">Days logged</div><div id="daysLogged" class="num">0</div></div><div class="metric"><div class="label">Compliant days</div><div id="compliantDays" class="num">0</div></div><div class="metric"><div class="label">Current No Slither streak</div><div id="progressStreak" class="num">0</div></div><div class="metric"><div class="label">7-day average</div><div id="sevenAvg" class="num">0%</div></div></div></div>
+    <div class="card"><h2>Surgery Trackers</h2><div class="grid2"><div class="metric"><div class="label">Right ankle/foot</div><div id="progressAnkleDays" class="smallnum">—</div><div class="mini">post-op days</div></div><div class="metric"><div class="label">Left ACL reconstruction</div><div id="progressAclDays" class="smallnum">—</div><div id="progressAclStatus" class="mini">strength rebuild tracker</div></div></div><div class="spacer"></div><div class="notice">ACL tracker uses the 7/1/2025 reconstruction date. Use knee pain trend + swelling/mechanical notes to guide weekly reviews, not panic.</div></div>
     <div class="card"><h2>Last 28 Days</h2><div class="history" id="historyGrid"></div><div class="spacer"></div><div class="small muted">Green = 80%+, yellow = 60–79%, red = logged below 60%, dim = not logged.</div></div>
     <div class="card"><h2>Pain Trend</h2><h3>Right ankle / medial malleolus</h3><div class="history" id="anklePainGrid"></div><div class="spacer"></div><h3>Left knee</h3><div class="history" id="kneePainGrid"></div><div class="spacer"></div><div class="small muted">Green 0–3, yellow 4–5, orange 6–7, red 8–10. Pain >6 should include a detail note.</div></div>
     <div class="card"><h2>Insights</h2><div id="insights"></div></div>
@@ -109,11 +111,14 @@
 
 <script>
 'use strict';
-const VERSION = 10;
+const VERSION = 12;
 const STORE_KEY = 'sixMonthForge.v6';
 const START_DATE = '2026-07-10';
 const FINISH_DATE = '2026-12-31';
 const SURGERY_DATE = '2026-05-14';
+const ACL_SURGERY_DATE = '2025-07-01';
+const ACL_ONE_YEAR_DATE = '2026-07-01';
+const ACL_EIGHTEEN_MONTH_DATE = '2027-01-01';
 const SCREW_ESTIMATE_DATE = addDays(parseLocalDate(SURGERY_DATE), 91);
 const MENISCUS_WINDOW_DATE = '2026-08-15';
 const DAILY_REMINDER_TIME = '5:00 PM';
@@ -124,6 +129,7 @@ const checklist = [
   {id:'noSlither', pillar:'guard', label:'No Slither', why:'Main addiction target. 0 minutes.'},
   {id:'urge', pillar:'guard', label:'Urge handled / not needed', why:'Respond to the urge; do not argue with it.'},
   {id:'replacement', pillar:'guard', label:'Replacement action', why:'Real life gets a vote before screens.'},
+  {id:'protocolRun', pillar:'guard', label:'Addiction protocol run / not needed', why:'If an urge hits: interrupt access, change environment, delay 10 minutes, replace, and log outcome.'},
   {id:'rehab', pillar:'body', label:'Rehab or mobility minimum', why:'Correct minimum based on pain, work, and restrictions.'},
   {id:'sleep', pillar:'body', label:'Sleep / recovery protected', why:'Night-shift recovery floor.'},
   {id:'bg', pillar:'body', label:'BG safety handled', why:'Type 1 diabetes basics checked for shift/recovery.'},
@@ -132,6 +138,7 @@ const checklist = [
   {id:'protein', pillar:'body', label:'Protein hit', why:'Muscle retention + healing.'},
   {id:'creatine', pillar:'body', label:'Creatine taken', why:'Strength/rebuild consistency.'},
   {id:'logged', pillar:'life', label:'Fast log complete', why:'Keeps tracker from becoming the task.'},
+  {id:'readingPrayer', pillar:'life', label:'Reading + prayer', why:'Daily grounding before dopamine loops and injury anxiety.'},
   {id:'phoneAway', pillar:'life', label:'Phone away from bed', why:'Protects post-shift sleep.'},
   {id:'outside', pillar:'life', label:'Outside / social touch', why:'Mood/environment support.'}
 ];
@@ -174,6 +181,7 @@ function migrate(raw){
       s.days[k].kneePain = Number.isFinite(+s.days[k].kneePain) ? +s.days[k].kneePain : 0;
       s.days[k].kneePainNote = s.days[k].kneePainNote || '';
       s.days[k].kneePainDetail = s.days[k].kneePainDetail || '';
+      s.days[k].protocolNote = s.days[k].protocolNote || '';
     });
     return s;
   }catch(e){
@@ -183,8 +191,8 @@ function migrate(raw){
 let state = migrate(safeGet(STORE_KEY));
 function save(){ state.version = VERSION; state.lastSaved = new Date().toISOString(); const ok = safeSet(STORE_KEY, JSON.stringify(state)); renderSaveStatus(); return ok; }
 function renderSaveStatus(){ const text = state.lastSaved ? 'Last saved: '+new Date(state.lastSaved).toLocaleTimeString([], {hour:'numeric', minute:'2-digit'}) : 'Ready to save'; ['saveStatusHome','saveStatusBackup'].forEach(id=>{ const el=$(id); if(el) el.textContent=text; }); }
-function day(date=activeDate()){ if(!state.days[date]) state.days[date] = {checks:{}, anklePain:0, anklePainNote:'', anklePainDetail:'', kneePain:0, kneePainNote:'', kneePainDetail:''}; return state.days[date]; }
-function scoreFor(date){ const d = state.days[date]; if(!d) return {overall:0, guard:0, body:0, life:0, logged:false}; const calc = p => { const items=checklist.filter(x=>x.pillar===p); return items.filter(x=>d.checks && d.checks[x.id]).length / items.length; }; const guard=calc('guard'), body=calc('body'), life=calc('life'); const overall = checklist.filter(x=>d.checks && d.checks[x.id]).length / checklist.length; const painLogged = !!d.anklePainNote || !!d.anklePainDetail || !!d.kneePainNote || !!d.kneePainDetail || (d.anklePain||0)>0 || (d.kneePain||0)>0; return {overall, guard, body, life, logged:Object.keys(d.checks||{}).length>0 || painLogged}; }
+function day(date=activeDate()){ if(!state.days[date]) state.days[date] = {checks:{}, anklePain:0, anklePainNote:'', anklePainDetail:'', kneePain:0, kneePainNote:'', kneePainDetail:'', protocolNote:''}; return state.days[date]; }
+function scoreFor(date){ const d = state.days[date]; if(!d) return {overall:0, guard:0, body:0, life:0, logged:false}; const calc = p => { const items=checklist.filter(x=>x.pillar===p); return items.filter(x=>d.checks && d.checks[x.id]).length / items.length; }; const guard=calc('guard'), body=calc('body'), life=calc('life'); const overall = checklist.filter(x=>d.checks && d.checks[x.id]).length / checklist.length; const painLogged = !!d.anklePainNote || !!d.anklePainDetail || !!d.kneePainNote || !!d.kneePainDetail || !!d.protocolNote || (d.anklePain||0)>0 || (d.kneePain||0)>0; return {overall, guard, body, life, logged:Object.keys(d.checks||{}).length>0 || painLogged}; }
 function currentNoSlitherStreak(upTo=activeDate()){ let streak=0; let d=parseLocalDate(upTo); while(d>=parseLocalDate(START_DATE)){ const ds=isoDate(d); if(state.days[ds]?.checks?.noSlither) streak++; else break; d.setDate(d.getDate()-1); } return streak; }
 function forgeCount(upTo=activeDate()){ let count=0; let d=parseLocalDate(START_DATE); const end=parseLocalDate(upTo); while(d<=end){ if(scoreFor(isoDate(d)).overall >= .6) count++; d.setDate(d.getDate()+1); } return count; }
 function setWidth(id,value){ const el=$(id); if(el) el.style.width = clamp(value,0,1)*100+'%'; }
@@ -205,8 +213,11 @@ function renderHome(){
   const fc=forgeCount(date); $('forgeCount').textContent=fc; const left=Math.max(0,daysBetween(date,FINISH_DATE)); $('finishLeft').textContent=left+' days left'; setWidth('forgeBar',fc/175);
   const post = Math.max(0, daysBetween(SURGERY_DATE, date)); $('daysPostOp').textContent = post;
   const screwLeft = Math.ceil((SCREW_ESTIMATE_DATE - parseLocalDate(date))/86400000); $('screwCountdown').textContent = screwLeft>=0 ? screwLeft : '0'; $('screwDate').textContent = 'estimate: '+SCREW_ESTIMATE_DATE.toLocaleDateString(undefined,{month:'short',day:'numeric'});
+  const aclPost = Math.max(0, daysBetween(ACL_SURGERY_DATE, date)); $('aclDaysPostOp').textContent = aclPost;
+  const aclLeft = Math.ceil((parseLocalDate(ACL_EIGHTEEN_MONTH_DATE) - parseLocalDate(date))/86400000); $('aclCountdown').textContent = aclLeft>=0 ? aclLeft : '0'; $('aclDate').textContent = '18-month mark: Jan 1, 2027';
+  $('aclStatus').textContent = parseLocalDate(date) >= parseLocalDate(ACL_ONE_YEAR_DATE) ? 'Left ACL: 1-year mark passed. Priority is durable quad strength, swelling control, deceleration, and confidence.' : 'Left ACL: building toward the 1-year mark. Keep loading smart and symptom-guided.';
   $('meniscusWindow').textContent = parseLocalDate(date) >= parseLocalDate(MENISCUS_WINDOW_DATE) ? 'Meniscus symptom decision window is open: use trends, mechanical symptoms, and clinician exam — not panic.' : 'Meniscus symptom decision window opens mid-August. Track symptoms calmly; trends beat panic.';
-  const floorIds = ['noSlither','blocker','replacement','bg','sleep','protein'];
+  const floorIds = ['noSlither','blocker','protocolRun','replacement','readingPrayer','bg','sleep','protein'];
   $('floor').innerHTML = floorIds.map(id=>{ const item=checklist.find(x=>x.id===id); return `<div class="floorItem"><div>${item.label}</div><span>${day(date).checks[id]?'✅':'⬜'}</span></div>`; }).join('');
 }
 function updatePainDetailVisibility(){
@@ -229,6 +240,7 @@ function renderChecks(){
   const date=activeDate(); const d=day(date); $('todayHeader').textContent = `${prettyDate(date)} • ${new Date().getHours()<10?'last night shift day':'current day'}`;
   $('anklePainSlider').value = d.anklePain || 0; $('anklePainValue').textContent = d.anklePain || 0; $('anklePainNote').value = d.anklePainNote || ''; $('anklePainDetail').value = d.anklePainDetail || '';
   $('kneePainSlider').value = d.kneePain || 0; $('kneePainValue').textContent = d.kneePain || 0; $('kneePainNote').value = d.kneePainNote || ''; $('kneePainDetail').value = d.kneePainDetail || '';
+  if($('protocolNote')) $('protocolNote').value = d.protocolNote || '';
   updatePainDetailVisibility();
   let html=''; const names={guard:'Guard Attention',body:'Rebuild Body',life:'Move Life'};
   ['guard','body','life'].forEach(p=>{
@@ -247,6 +259,9 @@ function renderProgress(){
   for(let d=new Date(start); d<=e; d.setDate(d.getDate()+1)){ const ds=isoDate(d); const sc=scoreFor(ds); if(sc.logged) logged++; if(sc.overall>=.6) compliant++; }
   for(let i=0;i<7;i++){ const d=addDays(e,-i); if(d>=start){ sum7 += scoreFor(isoDate(d)).overall; n7++; } }
   $('daysLogged').textContent=logged; $('compliantDays').textContent=compliant; $('progressStreak').textContent=currentNoSlitherStreak(end); $('sevenAvg').textContent=pct(n7?sum7/n7:0);
+  if($('progressAnkleDays')) $('progressAnkleDays').textContent = Math.max(0, daysBetween(SURGERY_DATE, end)) + ' days';
+  if($('progressAclDays')) $('progressAclDays').textContent = Math.max(0, daysBetween(ACL_SURGERY_DATE, end)) + ' days';
+  if($('progressAclStatus')) $('progressAclStatus').textContent = parseLocalDate(end) >= parseLocalDate(ACL_ONE_YEAR_DATE) ? '1-year mark passed; build durability' : 'building toward 1-year mark';
   let hist='', anklePain='', kneePain='';
   for(let i=27;i>=0;i--){
     const d=addDays(e,-i); const ds=isoDate(d); const sc=scoreFor(ds); let cls='';
@@ -270,6 +285,7 @@ function renderInsights(){
   const ankle7=avg(last7,d=>Number(state.days[d]?.anklePain||0)); const anklePrev=avg(prev7,d=>Number(state.days[d]?.anklePain||0));
   const knee7=avg(last7,d=>Number(state.days[d]?.kneePain||0)); const kneePrev=avg(prev7,d=>Number(state.days[d]?.kneePain||0));
   const guard7=avg(last7,d=>scoreFor(d).guard); const body7=avg(last7,d=>scoreFor(d).body); const life7=avg(last7,d=>scoreFor(d).life);
+  const protocol7=avg(last7,d=>state.days[d]?.checks?.protocolRun?1:0); const reading7=avg(last7,d=>state.days[d]?.checks?.readingPrayer?1:0);
   const out=[];
   if(s7>=.8) out.push('✅ You are in a strong rhythm: preserve the system, do not add complexity.');
   else if(s7>=.6) out.push('🟡 Momentum is alive: protect No Slither + recovery basics before chasing extra tasks.');
@@ -278,6 +294,8 @@ function renderInsights(){
   if(knee7-kneePrev>=1.5) out.push('⚠️ Knee pain is trending up versus the prior week. Watch swelling, shifting, mechanical symptoms, and keep body work inside PT/surgeon restrictions.');
   const highMissing = last7.filter(d=>{ const x=state.days[d]||{}; return (x.anklePain>6 && !String(x.anklePainDetail||'').trim()) || (x.kneePain>6 && !String(x.kneePainDetail||'').trim()); });
   if(highMissing.length) out.push('📝 Pain over 6 needs detail: what caused it, exact location, load/movement, swelling/instability, and what helped.');
+  if(protocol7<.5) out.push('🛡️ Addiction protocol is underused: if an urge shows up, run the reset steps immediately and log the trigger/outcome.');
+  if(reading7<.5) out.push('📖 Reading + prayer is low: make it a tiny daily anchor, not a huge spiritual assignment.');
   if(guard7<body7 && guard7<life7) out.push('🧠 Guard Attention is the weak link this week: make access harder, not motivation louder.');
   if(body7<.55) out.push('🦵 Rebuild Body is under-supported: prioritize sleep, BG safety, protein, fluids, and approved rehab minimum.');
   if(life7<.55) out.push('🌲 Move Life is low: one outside/social touch will stabilize mood more than another app tweak.');
@@ -316,7 +334,7 @@ function buildWeeklyPacket(wk){
   const start=parseLocalDate(wk); const dates=Array.from({length:7},(_,i)=>isoDate(addDays(start,i))); const w=state.weekly[wk]||{};
   const avg=(fn)=>dates.reduce((a,d)=>a+fn(d),0)/dates.length; const avgScore=avg(d=>scoreFor(d).overall); const guard=avg(d=>scoreFor(d).guard), body=avg(d=>scoreFor(d).body), life=avg(d=>scoreFor(d).life);
   const ankleAvg=avg(d=>Number(state.days[d]?.anklePain||0)); const kneeAvg=avg(d=>Number(state.days[d]?.kneePain||0));
-  const daily = dates.map(d=>{ const x=state.days[d]||{}; return `- ${d}: score ${pct(scoreFor(d).overall)}, ankle ${x.anklePain ?? 0} (${x.anklePainNote || '—'}; detail: ${x.anklePainDetail || '—'}), knee ${x.kneePain ?? 0} (${x.kneePainNote || '—'}; detail: ${x.kneePainDetail || '—'})`; }).join('\n');
+  const daily = dates.map(d=>{ const x=state.days[d]||{}; const c=x.checks||{}; return `- ${d}: score ${pct(scoreFor(d).overall)}, protocol ${c.protocolRun?'yes':'no'} (${x.protocolNote || '—'}), reading/prayer ${c.readingPrayer?'yes':'no'}, ankle ${x.anklePain ?? 0} (${x.anklePainNote || '—'}; detail: ${x.anklePainDetail || '—'}), knee ${x.kneePain ?? 0} (${x.kneePainNote || '—'}; detail: ${x.kneePainDetail || '—'})`; }).join('\n');
   return `Six-Month Forge Weekly Reflection
 Week starting: ${wk}
 Review target: Saturday 5 PM
@@ -329,6 +347,8 @@ Scores
 - Current No Slither streak: ${currentNoSlitherStreak(activeDate())}/90
 - Avg right ankle/medial malleolus pain: ${ankleAvg.toFixed(1)}/10
 - Avg left knee pain: ${kneeAvg.toFixed(1)}/10
+- Right ankle/foot surgery tracker: ${Math.max(0, daysBetween(SURGERY_DATE, activeDate()))} days post-op from 5/14/2026
+- Left ACL reconstruction tracker: ${Math.max(0, daysBetween(ACL_SURGERY_DATE, activeDate()))} days post-op from 7/1/2025; 18-month durability checkpoint is Jan 1, 2027
 
 Weekly journal
 - Body/pain: ${w.body || '—'}
@@ -344,7 +364,7 @@ Weekly journal
 Daily detail
 ${daily}
 
-Please review this and recommend: 1 Critical Mission, 1 Body Mission, 1 Life Mission, 1 Optional Power Move only if capacity is good, dopamine replacement, completed-day definition, and a Northstar Score /100. Pay extra attention to any knee or ankle pain over 6 and whether the detail explains the trigger/load.`;
+Please review this and recommend: 1 Critical Mission, 1 Body Mission, 1 Life Mission, 1 Optional Power Move only if capacity is good, dopamine replacement, completed-day definition, and a Northstar Score /100. Pay extra attention to: addiction protocol consistency, reading/prayer consistency, left ACL reconstruction durability, any knee or ankle pain over 6, and whether high-pain details explain trigger/load.`;
 }
 function flushCurrentInputs(){
   try{
@@ -353,6 +373,7 @@ function flushCurrentInputs(){
       const d = day(activeDate());
       d.anklePain = +$('anklePainSlider').value; d.anklePainNote = $('anklePainNote').value; d.anklePainDetail = $('anklePainDetail').value;
       d.kneePain = +$('kneePainSlider').value; d.kneePainNote = $('kneePainNote').value; d.kneePainDetail = $('kneePainDetail').value;
+      if($('protocolNote')) d.protocolNote = $('protocolNote').value;
     }
     if($('wkBody')){
       const wk=weekStartSaturday(activeDate());
@@ -379,6 +400,7 @@ function init(){
   const autoSavePain = debounce(()=>savePainData(false),450);
   ['anklePainSlider','kneePainSlider'].forEach(id=>$(id).addEventListener('input',()=>{ updatePainDetailVisibility(); autoSavePain(); }));
   ['anklePainNote','anklePainDetail','kneePainNote','kneePainDetail'].forEach(id=>$(id).addEventListener('input',autoSavePain));
+  $('protocolNote').addEventListener('input',debounce(()=>{ day(activeDate()).protocolNote=$('protocolNote').value; save(); renderProgress(); renderWeekly(); },450));
   $('savePain').addEventListener('click',()=>savePainData(true));
   $('savePhys').addEventListener('click',savePhys);
   const autoSavePhysDraft = debounce(()=>savePhysDraft(false),600);
