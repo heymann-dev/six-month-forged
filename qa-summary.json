@@ -1,0 +1,42 @@
+{
+  "release": "v30",
+  "main_behavioral": {
+    "passed": 33,
+    "failed": 0,
+    "runtime_errors": 0
+  },
+  "secondary_modules": {
+    "passed": 12,
+    "failed": 0,
+    "checks": [
+      "recovery_status_save",
+      "recovery_measurement_add",
+      "mountain_milestone_save",
+      "mountain_roadmap_save",
+      "cash_snapshot_save",
+      "custom_goal_add",
+      "master_task_add",
+      "weekly_goals_save",
+      "weekly_review_save",
+      "monthly_review_save",
+      "monthly_physique_save",
+      "work_schedule_save"
+    ]
+  },
+  "behavioral_total": {
+    "passed": 45,
+    "failed": 0
+  },
+  "static": {
+    "html_ids": 411,
+    "duplicate_ids": 0,
+    "inline_javascript": "passed",
+    "service_worker_javascript": "passed",
+    "manifest_json": "valid",
+    "manifest_start_url": "./?v=30",
+    "service_worker_cache": "project-northstar-v30",
+    "missing_local_assets": 0
+  },
+  "fix": "CSV history export now includes full checklist, daily reflection, and complete daily evidence fields.",
+  "remaining_limitation": "Live-origin service-worker installation and offline reload require deployment to GitHub Pages."
+}

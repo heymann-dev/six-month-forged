@@ -1,68 +1,64 @@
-# Project Northstar v20 — Goals Lock-In
+# Project Northstar v30 — Verified Momentum Campaign
 
-The goals-and-milestones release for Hudson’s six-month recovery, attention-control, financial, career, life-administration, physique, and Return-to-Mountains command center.
+Project Northstar v30 is the verified release of the complete military-field Northstar application. It preserves the v29 interface, dates, schedule logic, scoring, levels, rank maintenance, recovery systems, goals, reviews, photographs, cash tracker, master tasks, 23 achievement patches, weekly Boss Missions, campaign map, and 19 sealed rewards.
 
-## What changed in v20
+## v30 correction
 
-### Dedicated Goals hub
-A new **Goals** tab keeps annual outcomes one tap away without crowding the daily Home and Today flow. Home shows only the $100K cash progress and the next three active priorities.
+The structured JSON and full photo-inclusive backup already preserved the complete daily record. The CSV history export did not include the full daily checklist or daily reflection note. v30 corrects that export gap.
 
-### $100K cash-reserve staircase
-The cash tracker includes:
+The CSV now includes:
 
-- editable current cash, target, target date, and strategy
-- $10,000 milestone staircase through $100,000
-- amount and percentage remaining
-- next checkpoint
-- required monthly pace based on the selected target date
-- dated snapshots with notes and change history
+- Day type and schedule suggestion
+- Completion, Adaptive XP/status, and Northstar Score
+- Nutrition, sleep, energy, stress, work, blood-sugar, pain, and swelling fields
+- Mission text and completion evidence
+- Full-checklist count, percentage, and completed-item list
+- Daily reflection
+- Symptom and protocol notes
+- Rank-maintenance and Reset Protocol evidence
 
-Use one consistent definition of cash across updates. Investment balances remain separate unless Hudson intentionally changes the definition.
+No score, level, reward, date, schedule, or storage-schema behavior was changed.
 
-### 2026 outcome trackers
-The app now tracks:
+## Verified systems
 
-- 90 consecutive No-Slither days
-- Six-Month Forge completion with logged evidence
-- safe Return-to-Mountains progression
-- durable lower-body strength and control
-- official monthly physique evidence
-- ICU / critical-care pathway development
-- NIHSS and violence-prevention education
-- essential life-administration completion
-- UBT / Unit Council participation
+- Seven color-coded navigation pages
+- Adaptive Work Night, Off Day, and Post-Shift Recovery quests
+- Daily XP and original weighted Northstar Score
+- Fifty levels, active rank, historical peak, and controlled level loss
+- Twenty-three permanent evidence patches
+- Ten campaign sectors and deterministic weekly Boss Missions
+- Nineteen sealed reward gates
+- Night-shift rotation and four-night bridge detection
+- Recovery, Mountains, Goals, Reviews, Cash, Physique, Tasks, History, and Data modules
+- CSV export, structured JSON export, full photo-inclusive backup, and restore
+- Existing-data migration and local-storage persistence
+- Desktop and 390-pixel mobile layouts
 
-Evidence-linked goals update automatically where possible. Manual goals remain editable and custom goals can be added.
+## Data compatibility
 
-### Consolidated 2026 commitments
-The Goals page includes editable tasks for:
+Existing storage remains compatible:
 
-- trusted-support-person blocker control on August 2, 2026
-- $1,200 check to Dad
-- monthly haircut and reviews
-- passport
-- NIHSS training
-- violence-prevention training
-- sleeping sound blocker
-- getting the drone working
-- monthly $100K cash update
-- official monthly physique photos
+- `sixMonthForge.v6`
+- `sixMonthForge.archive.v1`
+- `sixMonthForge.photos.v1`
 
-## Data preservation
+The latest automatic migration safety copy remains:
 
-- Existing compatibility key remains `sixMonthForge.v6`.
-- v16–v19 data is migrated rather than replaced.
-- A pre-v20 local migration copy uses `sixMonthForge.preV20Backup`.
-- Structured history remains mirrored in IndexedDB `sixMonthForge.archive.v1`.
-- Compressed photos remain in IndexedDB `sixMonthForge.photos.v1`.
-- Full JSON + photo exports remain the protection against device loss or deleted browser data.
+- `sixMonthForge.preV29Backup`
 
-## Important limitation
+v30 introduces no new data schema and does not wipe existing records.
 
-This remains a private browser-local app, not a cloud database. Keep original images in iPhone Photos and create a verified full backup at least every 14 days.
+## Fixed project dates
+
+- Start: July 15, 2026
+- End: December 31, 2026
+- Early reward phase: July 15–September 15, 2026
+- No-Slither 90-day milestone: October 12, 2026
 
 ## Deployment
 
-Upload the unzipped root files and the complete `assets` folder to GitHub Pages. Fresh URL:
+Upload the contents of this folder to the repository root and open:
 
-`https://heymann-dev.github.io/six-month-forged/?v=20`
+`https://heymann-dev.github.io/six-month-forged/?v=30`
+
+Export a full JSON + photo backup before replacing the live files. Do not clear Safari website data, because Northstar records are stored locally in the browser.

@@ -1,0 +1,387 @@
+{
+  "checks": {
+    "initial_version": {
+      "pass": true,
+      "detail": "v30 \u00b7 military field edition + momentum campaign"
+    },
+    "seven_navigation_tabs": {
+      "pass": true,
+      "detail": 7
+    },
+    "achievement_patches_render": {
+      "pass": true,
+      "detail": 23
+    },
+    "sealed_rewards_render": {
+      "pass": true,
+      "detail": 19
+    },
+    "campaign_sectors_render": {
+      "pass": true,
+      "detail": 10
+    },
+    "navigation_switching": {
+      "pass": true,
+      "detail": [
+        [
+          "home",
+          true
+        ],
+        [
+          "today",
+          true
+        ],
+        [
+          "recovery",
+          true
+        ],
+        [
+          "mountains",
+          true
+        ],
+        [
+          "goals",
+          true
+        ],
+        [
+          "reviews",
+          true
+        ],
+        [
+          "data",
+          true
+        ]
+      ]
+    },
+    "initial_runtime_errors": {
+      "pass": true,
+      "detail": []
+    },
+    "daily_quest_100_xp": {
+      "pass": true,
+      "detail": "100 XP"
+    },
+    "after_action_report_opens": {
+      "pass": true,
+      "detail": "v29Debrief open"
+    },
+    "daily_record_complete": {
+      "pass": true,
+      "detail": "2026-07-16T00:04:01.610Z"
+    },
+    "daily_reflection_saved": {
+      "pass": true,
+      "detail": "Verified v30 daily reflection evidence."
+    },
+    "full_checklist_saved": {
+      "pass": true,
+      "detail": {
+        "done": 16,
+        "total": 16,
+        "ratio": 1
+      }
+    },
+    "first_patch_unlocks": {
+      "pass": true,
+      "detail": 1
+    },
+    "reflection_appears_in_history": {
+      "pass": true,
+      "detail": "Daily reflection: Verified v30 daily reflection evidence."
+    },
+    "storage_key_written": {
+      "pass": true,
+      "detail": [
+        "sixMonthForge.v6",
+        "sixMonthForge.preV22Backup",
+        "sixMonthForge.preV27Backup",
+        "sixMonthForge.preV29Backup",
+        "sixMonthForge.preV24Backup",
+        "sixMonthForge.preV21Backup"
+      ]
+    },
+    "reload_persistence": {
+      "pass": true,
+      "detail": {
+        "reflection": "Verified v30 daily reflection evidence.",
+        "xp": 100,
+        "complete": true,
+        "patches": 1
+      }
+    },
+    "reload_no_runtime_errors": {
+      "pass": true,
+      "detail": []
+    },
+    "locked_rewards_do_not_leak": {
+      "pass": true,
+      "detail": []
+    },
+    "weekly_reward_gate_and_reveal": {
+      "pass": true,
+      "detail": {
+        "gate": {
+          "logged": 5,
+          "average": 100,
+          "closed": true
+        },
+        "revealed": true
+      }
+    },
+    "checkpoint_reward_gate_and_reveal": {
+      "pass": true,
+      "detail": {
+        "revealed": true,
+        "task": null
+      }
+    },
+    "reward_test_no_runtime_errors": {
+      "pass": true,
+      "detail": []
+    },
+    "normal_rank_loss_cap": {
+      "pass": true,
+      "detail": {
+        "first": 9,
+        "second": 9,
+        "peak": 10,
+        "losses": 1
+      }
+    },
+    "deliberate_rank_loss_cap": {
+      "pass": true,
+      "detail": {
+        "first": 8,
+        "second": 8,
+        "peak": 10,
+        "losses": 1
+      }
+    },
+    "night_shift_schedule_mapping": {
+      "pass": true,
+      "detail": {
+        "2026-07-15": {
+          "suggest": "Off Day",
+          "shift": false,
+          "week": "A",
+          "total": 0,
+          "position": 0
+        },
+        "2026-07-16": {
+          "suggest": "Work Night",
+          "shift": true,
+          "week": "A",
+          "total": 1,
+          "position": 1
+        },
+        "2026-07-17": {
+          "suggest": "Post-Shift Recovery",
+          "shift": false,
+          "week": "A",
+          "total": 0,
+          "position": 0
+        },
+        "2026-07-21": {
+          "suggest": "Work Night",
+          "shift": true,
+          "week": "B",
+          "total": 1,
+          "position": 1
+        },
+        "2026-07-22": {
+          "suggest": "Post-Shift Recovery",
+          "shift": false,
+          "week": "B",
+          "total": 0,
+          "position": 0
+        },
+        "2026-07-24": {
+          "suggest": "Work Night",
+          "shift": true,
+          "week": "B",
+          "total": 4,
+          "position": 1
+        },
+        "2026-07-25": {
+          "suggest": "Work Night",
+          "shift": true,
+          "week": "B",
+          "total": 4,
+          "position": 2
+        },
+        "2026-07-26": {
+          "suggest": "Work Night",
+          "shift": true,
+          "week": "A",
+          "total": 4,
+          "position": 3
+        },
+        "2026-07-27": {
+          "suggest": "Work Night",
+          "shift": true,
+          "week": "A",
+          "total": 4,
+          "position": 4
+        },
+        "2026-07-28": {
+          "suggest": "Post-Shift Recovery",
+          "shift": false,
+          "week": "A",
+          "total": 0,
+          "position": 0
+        },
+        "2026-07-30": {
+          "suggest": "Work Night",
+          "shift": true,
+          "week": "A",
+          "total": 1,
+          "position": 1
+        }
+      }
+    },
+    "structured_json_export": {
+      "pass": true,
+      "detail": [
+        "app",
+        "version",
+        "exportedAt",
+        "state"
+      ]
+    },
+    "comprehensive_csv_export": {
+      "pass": true,
+      "detail": {
+        "columns": 45,
+        "reflection": "CSV reflection proof",
+        "hasChecklist": true
+      }
+    },
+    "export_no_runtime_errors": {
+      "pass": true,
+      "detail": []
+    },
+    "backup_restore": {
+      "pass": true,
+      "detail": {
+        "reflection": "restore proof",
+        "goal": 37,
+        "rewards": 9,
+        "gamification": true
+      }
+    },
+    "legacy_migration_preserves_data": {
+      "pass": true,
+      "detail": {
+        "rewards": 9,
+        "active": 4,
+        "peak": 6
+      }
+    },
+    "restore_migration_no_runtime_errors": {
+      "pass": true,
+      "detail": []
+    },
+    "mobile_no_horizontal_overflow": {
+      "pass": true,
+      "detail": [
+        [
+          "home",
+          {
+            "doc": 390,
+            "body": 390,
+            "view": 390,
+            "nav": 370,
+            "navClient": 370
+          },
+          true
+        ],
+        [
+          "today",
+          {
+            "doc": 390,
+            "body": 390,
+            "view": 390,
+            "nav": 370,
+            "navClient": 370
+          },
+          true
+        ],
+        [
+          "recovery",
+          {
+            "doc": 390,
+            "body": 390,
+            "view": 390,
+            "nav": 370,
+            "navClient": 370
+          },
+          true
+        ],
+        [
+          "mountains",
+          {
+            "doc": 390,
+            "body": 390,
+            "view": 390,
+            "nav": 370,
+            "navClient": 370
+          },
+          true
+        ],
+        [
+          "goals",
+          {
+            "doc": 390,
+            "body": 390,
+            "view": 390,
+            "nav": 370,
+            "navClient": 370
+          },
+          true
+        ],
+        [
+          "reviews",
+          {
+            "doc": 390,
+            "body": 390,
+            "view": 390,
+            "nav": 370,
+            "navClient": 370
+          },
+          true
+        ],
+        [
+          "data",
+          {
+            "doc": 390,
+            "body": 390,
+            "view": 390,
+            "nav": 370,
+            "navClient": 370
+          },
+          true
+        ]
+      ]
+    },
+    "mobile_navigation_labels_visible": {
+      "pass": true,
+      "detail": [
+        "\u2726\nHOME",
+        "\u2713\nTODAY",
+        "\u2695\nRECOVERY",
+        "\u25b2\nMOUNTAINS",
+        "\u25ce\nGOALS",
+        "\u25a6\nREVIEWS",
+        "\u2699\nDATA"
+      ]
+    },
+    "mobile_no_runtime_errors": {
+      "pass": true,
+      "detail": []
+    }
+  },
+  "errors": [],
+  "notes": [],
+  "passed": 33,
+  "failed": 0
+}

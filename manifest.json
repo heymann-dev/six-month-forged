@@ -1,15 +1,26 @@
 {
-  "name": "Project Northstar — Six-Month Forge",
+  "name": "Project Northstar \u2014 Military Field Command Center",
   "short_name": "Northstar",
-  "description": "Hudson's recovery, discipline, attention, work, administration, and Return-to-Mountains command center.",
-  "start_url": "./?v=20",
+  "description": "Hudson's rugged, schedule-aware Project Northstar command center with military field texture, momentum campaign, achievement patches, boss missions, and sealed earned rewards.",
+  "start_url": "./?v=30",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#06101b",
-  "theme_color": "#07111d",
+  "background_color": "#080d09",
+  "theme_color": "#79805a",
   "icons": [
-    {"src":"icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
-  ]
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "id": "./?v=30"
 }
